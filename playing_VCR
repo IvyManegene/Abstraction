@@ -1,0 +1,48 @@
+import java.util.Scanner;
+interface VCR {
+    abstract void play();
+    abstract String stop(int choice);
+    abstract String skip(boolean choice);
+}
+class Cassette implements VCR{
+    @Override
+    public void play()
+    {
+        System.out.println("The cassette is playing");
+    }
+    @Override
+    public String stop( int press)
+    {
+        String result ;
+        if (press == 1)
+            result = "Stop playing";
+        else
+            result = "Continue Playing";
+        return result;
+    }
+    @Override
+    public String skip( boolean choice)
+    {
+        String answer;
+        if (choice)
+            answer = "Skip to the next";
+        else
+            answer = "Continue playing";
+        return answer;
+    }
+    public static void main(String[] args) {
+
+        Cassette cs = new Cassette();
+        Scanner scan = new Scanner(System.in);
+        int press;
+        System.out.println("Press 1 to stop or 0 to continue" );
+        press = scan.nextInt();
+        boolean choice;
+        System.out.println("Enter true  to skip or 0 to continue" );
+        choice = scan.hasNextBoolean();
+        cs.play();
+        System.out.println();
+        System.out.println(cs.stop(press));
+        System.out.println(cs.skip(choice));
+    }
+}
